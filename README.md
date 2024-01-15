@@ -1,0 +1,1 @@
+# watermark-remover-figma-plugin
