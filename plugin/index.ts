@@ -190,11 +190,14 @@ figma.ui.onmessage = async (msg) => {
 					{
 						type: IMAGE,
 						imageHash: image.hash,
-						scaleMode: "FIT",
+						scaleMode: "FILL",
 					},
 				];
 				toggleLoader(false);
-				figma.notify("Transformation Applied ", { timeout: 5000 });
+				figma.notify(
+					"Transformation Applied (Use ctrl/command + z/y to undo or redo results.)",
+					{ timeout: 5000 }
+				);
 			})
 			.catch((err) => {
 				figma.notify("Something went wrong (try resetting the form values)");
