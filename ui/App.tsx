@@ -242,20 +242,14 @@ function App() {
 		<div className={`main-container ${isLoading ? "hide-overflow" : ""}`}>
 			{isTokenSaved && !isTokenEditOn ? (
 				<div className="main-ui-container">
-					<div>
+					<div className="main-ui-sub-container">
 						<div id="options-wrapper">
 							<DynamicForm
 								setFormValues={setFormValues}
 								formValues={formValues}
 							/>
 						</div>
-						<div className="box-avlues-details">
-							{`(Box values are : (x-axis_y-axis_width_height))`}
-							<br />
-							{`only 0 to 100 values are allowed`}
-							<br />
-							{`if not applying use: 0_0_0_0 & on full image use: 0_0_100_100`}
-						</div>
+
 						<CreditsUI
 							totalCredit={totalCredit}
 							creditUSed={creditsUsed}
