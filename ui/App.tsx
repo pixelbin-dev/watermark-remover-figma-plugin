@@ -12,11 +12,11 @@ import { Util } from "./../util.ts";
 import "./styles/style.scss";
 import Pixelbin, { transformations } from "@pixelbin/core";
 import { PIXELBIN_IO } from "../config";
-import CreditsUI from "./components/creditDetails";
+import CreditsUI from "./components/CreditsUI/index.tsx";
 import TokenUI from "./components/TokenUI";
-import DynamicForm from "./components/dynamicForm";
-import Loader from "./components/loader";
-import Footer from "./components/mainScreenFooter/index.tsx";
+import DynamicForm from "./components/DynamicForm/index.tsx";
+import Loader from "./components/Loader/index.tsx";
+import Footer from "./components/Footer/index.tsx";
 
 PdkAxios.defaults.withCredentials = false;
 
@@ -30,6 +30,13 @@ function App() {
 	const [creditsUsed, setCreditUSed] = useState(0);
 	const [totalCredit, setTotalCredit] = useState(0);
 	const [orgId, setOrgId] = useState("");
+
+	let defaultPixelBinClient: PixelbinClient = new PixelbinClient(
+		new PixelbinConfig({
+			domain: `${PIXELBIN_IO}`,
+			apiSecret: `${tokenValue}`,
+		})
+	);
 
 	const {
 		INITIAL_CALL,
@@ -86,13 +93,7 @@ function App() {
 		}
 
 		if (data.pluginMessage.type === SELCTED_IMAGE) {
-			const defaultPixelBinClient: PixelbinClient = new PixelbinClient(
-				new PixelbinConfig({
-					domain: `${PIXELBIN_IO}`,
-					apiSecret: `${data.pluginMessage.token}`,
-				})
-			);
-
+			setTokenValue(data.pluginMessage.token);
 			let res = null;
 			let blob = new Blob([data.pluginMessage.imageBytes], {
 				type: "image/jpeg",
@@ -119,7 +120,6 @@ function App() {
 						);
 
 						const demoImage = pixelbin.image(url?.fileId);
-						console.log("formData", formValues);
 						demoImage.setTransformation(WatermarkRemoval.remove(formValues));
 						parent.postMessage(
 							{
@@ -158,17 +158,10 @@ function App() {
 		setTokenErr(false);
 		setIsLoading(true);
 
-		const defaultPixelBinClient: PixelbinClient = new PixelbinClient(
-			new PixelbinConfig({
-				domain: `${PIXELBIN_IO}`,
-				apiSecret: tokenValue,
-			})
-		);
-
 		try {
 			const orgDetails =
 				await defaultPixelBinClient.organization.getAppOrgDetails();
-			console.log("orgDetails", orgDetails);
+			setOrgId(orgDetails?.org?.cloudName);
 			parent.postMessage(
 				{
 					pluginMessage: {
@@ -214,16 +207,8 @@ function App() {
 
 	async function setCreditsDetails() {
 		if (tokenValue && tokenValue !== null) {
-			const defaultPixelBinClient: PixelbinClient = new PixelbinClient(
-				new PixelbinConfig({
-					domain: `${PIXELBIN_IO}`,
-					apiSecret: `${tokenValue}`,
-				})
-			);
-
 			try {
 				const newData = await defaultPixelBinClient.billing.getUsage();
-				console.log("DataData", newData);
 				const cu = newData.credits.used;
 				const cr = newData?.total?.credits;
 				setCreditUSed(cu);

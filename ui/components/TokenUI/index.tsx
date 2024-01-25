@@ -33,9 +33,6 @@ function TokenUI({
 	setTokenValue,
 }: props) {
 	const [isTokenTypePass, setIsTokenTypePass] = useState(true);
-	useEffect(() => {
-		console.log("Data", tokenValue);
-	}, [tokenValue]);
 
 	return (
 		<div className="api-key-ui">
@@ -45,7 +42,7 @@ function TokenUI({
 					<span
 						className="link"
 						onClick={() => {
-							handleLinkClick("https://console.pixelbin.io");
+							handleLinkClick(`${PIXELBIN_CONSOLE_SETTINGS}/apps`);
 						}}
 					>
 						&nbsp;console.pixelbin.io

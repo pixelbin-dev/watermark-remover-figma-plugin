@@ -12,7 +12,7 @@ import { HOW_IT_WORKS_URL } from "../config";
 
 //Append the UI
 figma.showUI(__html__, {
-	title: "watermarkremover.io",
+	title: "WatermarkRemover.io",
 	height: 400,
 	width: 248,
 	themeColors: true,
@@ -83,7 +83,7 @@ figma.ui.onmessage = async (msg) => {
 				});
 			}
 		} catch (err) {
-			figma.notify("Something wnet wrong");
+			figma.notify("Something went wrong");
 		}
 	}
 	if (msg.type === SAVE_TOKEN) {
@@ -111,12 +111,10 @@ figma.ui.onmessage = async (msg) => {
 				figma.clientStorage
 					.getAsync(SAVED_FORM_VALUE)
 					.then((value) => {
-						console.log("LAtestForm", value);
 						body.savedFormValue = value || localFormOptionsOptions;
 						figma.ui.postMessage(body);
 					})
 					.catch((err) => {
-						console.log("LAtestFormErr");
 						figma.ui.postMessage(body);
 					});
 			})

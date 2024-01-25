@@ -1,6 +1,6 @@
 {
 	"name": "WatermarkRemover.io",
-	"id": "1331551745927066773",
+	"id": "5",
 	"api": "1.0.0",
 	"editorType": ["figma"],
 	"main": "dist/plugin/index.js",
