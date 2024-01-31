@@ -19,23 +19,21 @@ Figma Plugin for [WatermarkRemover.io](WatermarkRemover.io), it helps users remo
 
 ## Development Process
 
-1. **Clone Repository**:  
+**Clone Repository**:  
 
-    `git clone https://github.com/pixelbin-dev/watermark-remover-figma-plugin.git` 
+    git clone https://github.com/pixelbin-dev/watermark-remover-figma-plugin.git
 
-2. **Install Dependencies**: 
+**Install Dependencies**: 
 
-    `npm install -D`
+    npm install -D
 
-3. **Build the Plugin**: 
+**Build the Plugin**: 
 
-    `npm run create:build`
+    npm run create:build
 
-4. **Add to Figma**: 
-    - In Figma, navigate to 'Plugins' > 'Development' > 'New Plugin'.
-    - Choose 'Link existing plugin' and select the `manifest.json` file from your plugin's build directory.
-
-5. **Test and Develop**: Run the plugin within Figma for testing and further development. After making code changes, rebuild and reload the plugin in Figma as needed.
+**Add to Figma**: 
+- In Figma, navigate to 'Plugins' > 'Development' > 'New Plugin'.
+- Choose 'Link existing plugin' and select the `manifest.json` file from your plugin's build directory.
 
 ## References
 
