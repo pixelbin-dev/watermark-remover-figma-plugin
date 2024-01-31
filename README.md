@@ -1,4 +1,4 @@
-# WatermarkRemover.io
+# WatermarkRemover.io Figma Plugin
 
 Figma Plugin for [WatermarkRemover.io](WatermarkRemover.io), it helps users remove watermark from images, present in Figma files. 
 
