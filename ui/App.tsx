@@ -208,9 +208,9 @@ function App() {
 	async function setCreditsDetails() {
 		if (tokenValue && tokenValue !== null) {
 			try {
-				const newData = await defaultPixelBinClient.billing.getUsage();
-				const cu = newData.credits.used;
-				const cr = newData?.total?.credits;
+				const newData = await defaultPixelBinClient.billing.getUsageV2();
+				const cu = newData?.credits?.used;
+				const cr = newData?.credits?.total;
 				setCreditUSed(cu);
 				setTotalCredit(cr);
 			} catch (err) {
